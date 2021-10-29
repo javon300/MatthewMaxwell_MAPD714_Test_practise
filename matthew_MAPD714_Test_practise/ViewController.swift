@@ -41,47 +41,126 @@ class ViewController: UIViewController
     @IBAction func stepperItem1(_ sender: UIStepper)
     {
         let value = Int(sender.value)
-        stepperChecker(value: value, tf: item1, stepCheck: step1Check)
+        stepperChecker(value: value, tf: item1, stepCheck: 1)
     }
     
     @IBAction func stepperItem2(_ sender: UIStepper)
     {
         let value = Int(sender.value)
-        stepperChecker(value: value, tf: item2, stepCheck: step2Check)
+        stepperChecker(value: value, tf: item2, stepCheck: 2)
     }
 
     @IBAction func stepperItem3(_ sender: UIStepper)
     {
         let value = Int(sender.value)
-        stepperChecker(value: value, tf: item3, stepCheck: step3Check)
+        stepperChecker(value: value, tf: item3, stepCheck: 3)
     }
     
     @IBAction func stepperItem4(_ sender: UIStepper)
     {
         let value = Int(sender.value)
-        stepperChecker(value: value, tf: item4, stepCheck: step4Check)
+        stepperChecker(value: value, tf: item4, stepCheck: 4)
     }
     @IBAction func stepperItem5(_ sender: UIStepper)
     {
         let value = Int(sender.value)
-        stepperChecker(value: value, tf: item5, stepCheck: step5Check)
+        stepperChecker(value: value, tf: item5, stepCheck: 5)
     }
 
     //controls how steppers display values to screen
-    func stepperChecker(value: Int, tf: UITextField, stepCheck: Bool)
+    func stepperChecker(value: Int, tf: UITextField, stepCheck: Int)
     {
-        var stepCheck = stepCheck
-        // first time stepper i pressed, only appends niumber
-        if (stepCheck == true)
+        let stepCheck = stepCheck
+        
+        //turns off the appropriate stepChecker, meaning that that stepper had been pressed atleast once before
+        chooseStepChecker(stepCheck: stepCheck)
+        
+        if(stepCheck == 1)
         {
-            tf.text?.append(String(value))
-            stepCheck = false
+            if (step1Check == true)
+            {
+                item1.text?.append(String(value))   // first time stepper i pressed, only appends niumber
+            }
+            else
+            {
+                item1.text?.removeLast()
+                item1.text?.append(String(value))
+            }
+        }
+        else if(stepCheck == 2)
+        {
+            if (step2Check == true)
+            {
+                item2.text?.append(String(value))   // first time stepper i pressed, only appends niumber
+            }
+            else
+            {
+                item2.text?.removeLast()
+                item2.text?.append(String(value))
+            }
+            
+        }
+        else if(stepCheck == 3)
+        { if (step3Check == true)
+            {
+                item3.text?.append(String(value))   // first time stepper i pressed, only appends niumber
+            }
+            else
+            {
+                item3.text?.removeLast()
+                item3.text?.append(String(value))
+            }
+        }
+        else if(stepCheck == 4)
+        { if (step4Check == true)
+            {
+                item4.text?.append(String(value))   // first time stepper i pressed, only appends niumber
+            }
+            else
+            {
+                item4.text?.removeLast()
+                item4.text?.append(String(value))
+            }
+        }
+        else if(stepCheck == 5)
+        {
+            if (step5Check == true)
+            {
+                item5.text?.append(String(value))   // first time stepper i pressed, only appends niumber
+            }
+            else
+            {
+                item5.text?.removeLast()
+                item5.text?.append(String(value))
+            }
         }
         //for every press besides the first stepper removes the last number and adds the new value
-        else
+       
+    }
+    
+    //changes the appropriate value after it has been changed for the first time
+    func chooseStepChecker(stepCheck: Int)
+    {
+        let stepCheck = stepCheck
+        if (stepCheck == 1)
         {
-            tf.text?.removeLast()
-            tf.text?.append(String(value))
+            step1Check = false
+        }
+        else if (stepCheck == 2)
+        {
+            step2Check = false
+        }
+        else if (stepCheck == 3)
+        {
+            step3Check = false
+        }
+        else if (stepCheck == 4)
+        {
+            step4Check = false
+        }
+        else if (stepCheck == 5)
+        {
+            step5Check = false
         }
     }
 }
