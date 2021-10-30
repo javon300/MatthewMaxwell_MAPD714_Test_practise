@@ -13,7 +13,7 @@ import UIKit
 
 class ViewController: UIViewController
 {
-    //value changes once code runs
+    //keeps track of the first press of each stepper, first press appends number second replaces number
     var step1Check = true
     var step2Check = true
     var step3Check = true
@@ -37,25 +37,22 @@ class ViewController: UIViewController
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    //Actions for steppers
+    //Actions for steppers.
     @IBAction func stepperItem1(_ sender: UIStepper)
     {
         let value = Int(sender.value)
         stepperChecker(value: value, tf: item1, stepCheck: 1)
     }
-    
     @IBAction func stepperItem2(_ sender: UIStepper)
     {
         let value = Int(sender.value)
         stepperChecker(value: value, tf: item2, stepCheck: 2)
     }
-
     @IBAction func stepperItem3(_ sender: UIStepper)
     {
         let value = Int(sender.value)
         stepperChecker(value: value, tf: item3, stepCheck: 3)
     }
-    
     @IBAction func stepperItem4(_ sender: UIStepper)
     {
         let value = Int(sender.value)
@@ -67,22 +64,26 @@ class ViewController: UIViewController
         stepperChecker(value: value, tf: item5, stepCheck: 5)
     }
 
-    //controls how steppers display values to screen
+    
+    
+    //controls how steppersappend values to textfield
     func stepperChecker(value: Int, tf: UITextField, stepCheck: Int)
     {
         let stepCheck = stepCheck
         
-        //turns off the appropriate stepChecker, meaning that that stepper had been pressed atleast once before
-        chooseStepChecker(stepCheck: stepCheck)
-        
+        //turns off the appropriate stepChecker, meaning that that stepper had been pressed atleast once before.
+        //for every press besides the first stepper removes the last number and adds the new value
         if(stepCheck == 1)
         {
             if (step1Check == true)
             {
-                item1.text?.append(String(value))   // first time stepper i pressed, only appends niumber
+                // first time stepper is pressed, only appends number
+                item1.text?.append(String(value))
+                chooseStepChecker(stepCheck: stepCheck)
             }
             else
             {
+                //second and after stepper replaces last number
                 item1.text?.removeLast()
                 item1.text?.append(String(value))
             }
@@ -91,10 +92,13 @@ class ViewController: UIViewController
         {
             if (step2Check == true)
             {
-                item2.text?.append(String(value))   // first time stepper i pressed, only appends niumber
+                // first time stepper is pressed, only appends number
+                item2.text?.append(String(value))
+                chooseStepChecker(stepCheck: stepCheck)
             }
             else
             {
+                //second and after stepper replaces last number
                 item2.text?.removeLast()
                 item2.text?.append(String(value))
             }
@@ -103,21 +107,28 @@ class ViewController: UIViewController
         else if(stepCheck == 3)
         { if (step3Check == true)
             {
-                item3.text?.append(String(value))   // first time stepper i pressed, only appends niumber
+            // first time stepper is pressed, only appends number
+                item3.text?.append(String(value))
+                chooseStepChecker(stepCheck: stepCheck)
             }
             else
             {
+                //second and after stepper replaces last number
                 item3.text?.removeLast()
                 item3.text?.append(String(value))
             }
         }
         else if(stepCheck == 4)
-        { if (step4Check == true)
+        {
+            if (step4Check == true)
             {
-                item4.text?.append(String(value))   // first time stepper i pressed, only appends niumber
+                // first time stepper is pressed, only appends number
+                item4.text?.append(String(value))
+                chooseStepChecker(stepCheck: stepCheck)
             }
             else
             {
+                //second and after stepper replaces last number
                 item4.text?.removeLast()
                 item4.text?.append(String(value))
             }
@@ -126,19 +137,22 @@ class ViewController: UIViewController
         {
             if (step5Check == true)
             {
-                item5.text?.append(String(value))   // first time stepper i pressed, only appends niumber
+                // first time stepper is pressed, only appends number
+                item5.text?.append(String(value))
+                chooseStepChecker(stepCheck: stepCheck)
             }
             else
             {
+                //second and after stepper replaces last number
                 item5.text?.removeLast()
                 item5.text?.append(String(value))
             }
         }
-        //for every press besides the first stepper removes the last number and adds the new value
        
     }
     
-    //changes the appropriate value after it has been changed for the first time
+    
+    //changes the appropriate bool stepper checker value after it has been changed for the first time
     func chooseStepChecker(stepCheck: Int)
     {
         let stepCheck = stepCheck
