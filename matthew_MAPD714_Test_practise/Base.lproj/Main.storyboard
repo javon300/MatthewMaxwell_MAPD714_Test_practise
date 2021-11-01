@@ -100,6 +100,9 @@
                                     <fontDescription key="titleFontDescription" type="system" weight="black" pointSize="16"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="saveArray:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K0e-tW-5NC"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Id2-2Y-ujB">
                                 <rect key="frame" x="266" y="238" width="65" height="20.5"/>
@@ -178,6 +181,8 @@
                         <outlet property="item4Step" destination="ftm-OP-4og" id="CMz-gx-URd"/>
                         <outlet property="item5" destination="dfy-e0-FqJ" id="vUd-1A-x8I"/>
                         <outlet property="item5Step" destination="zSt-tS-grD" id="FEr-Lb-4Jg"/>
+                        <outlet property="listName" destination="h4T-U4-3GV" id="fCE-Br-0qy"/>
+                        <outlet property="saveBtn" destination="vu1-fS-ukF" id="XTX-fh-Rf3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

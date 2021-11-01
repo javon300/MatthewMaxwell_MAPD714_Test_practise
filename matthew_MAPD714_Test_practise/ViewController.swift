@@ -6,13 +6,17 @@
     id: 301200258
     wed oct 28
  */
-//  Created by javon maxwell on 2021-10-28.
+//  Created by maxwell on 2021-10-28.
 //
 
 import UIKit
 
 class ViewController: UIViewController
 {
+    //userdefault is a inbuilt method used to save data on a device
+    let userDefaults = UserDefaults.standard
+    var listArray: [String] = []
+    
     //keeps track of the first press of each stepper, first press appends number second replaces number
     var step1Check = true
     var step2Check = true
@@ -26,17 +30,30 @@ class ViewController: UIViewController
     @IBOutlet weak var item3: UITextField!
     @IBOutlet weak var item4: UITextField!
     @IBOutlet weak var item5: UITextField!
+    @IBOutlet weak var listName: UITextField!
     //steppers
     @IBOutlet weak var item1Step: UIStepper!
     @IBOutlet weak var item2Step: UIStepper!
     @IBOutlet weak var item3Step: UIStepper!
     @IBOutlet weak var item4Step: UIStepper!
     @IBOutlet weak var item5Step: UIStepper!
+    //buttons
+    @IBOutlet weak var saveBtn: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    //action for buttons
+    @IBAction func saveArray(_ sender: UIButton)
+    {
+        saveToDevice()
+    }
+    
+    
+    
     //Actions for steppers.
     @IBAction func stepperItem1(_ sender: UIStepper)
     {
@@ -176,6 +193,30 @@ class ViewController: UIViewController
         {
             step5Check = false
         }
+    }
+    
+    //saves user data in persistent storage using userDefualts
+    func saveToDevice()
+    {
+        //create array and saves details with the key as the listname
+        listArray = [listName.text!, item1.text! , item2.text!, item3.text!, item4.text!, item5.text!]
+        userDefaults.set(listArray, forKey: "list")
+        
+        
+        //show saved info
+        let retreivedList = userDefaults.object(forKey: "list") as? [String]
+        
+        //save values from array
+        let lName = String(retreivedList![0])
+        let item1 = String(retreivedList![1])
+        let item2 = String(retreivedList![2])
+        let item3 = String(retreivedList![3])
+        let item4 = String(retreivedList![4])
+        let item5 = String(retreivedList![5])
+        
+        //displays retreived values to user
+        let alert = UIAlertController(title: lName, message: item1 + "\n" + item2 + "\n" + item3 + "\n"  +  item4 + "\n" + item5, preferredStyle: .alert)
+        self.present(alert, animated: true)
     }
 }
 
